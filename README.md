@@ -1,6 +1,7 @@
 # terraform
 
-
+## Setting up secrets
+run `npm run transcrypt -- -c aes-256-cbc -p '<PASSWORD_HERE>'` to decrypt the secrets folder.
 
 ## Getting started
 
