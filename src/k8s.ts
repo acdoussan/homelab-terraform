@@ -18,6 +18,7 @@ export class K8sStack extends TerraformStack {
 
     const nodes = {
       'k8s-ctrl-1': {
+        vmid: 200,
         cores: 2,
         memory: 2048,
         network: [
@@ -31,6 +32,7 @@ export class K8sStack extends TerraformStack {
         targetNode: 'hp1',
       },
       'k8s-ctrl-2': {
+        vmid: 201,
         cores: 2,
         memory: 2048,
         network: [
@@ -44,6 +46,7 @@ export class K8sStack extends TerraformStack {
         targetNode: 'hp2',
       },
       'k8s-ctrl-3': {
+        vmid: 202,
         cores: 2,
         memory: 2048,
         network: [
@@ -57,6 +60,7 @@ export class K8sStack extends TerraformStack {
         targetNode: 'r720',
       },
       'k8s-wkr-1': {
+        vmid: 203,
         cores: 2,
         memory: 4096,
         network: [
@@ -70,6 +74,7 @@ export class K8sStack extends TerraformStack {
         targetNode: 'hp1',
       },
       'k8s-wkr-2': {
+        vmid: 204,
         cores: 2,
         memory: 4096,
         network: [
@@ -83,6 +88,7 @@ export class K8sStack extends TerraformStack {
         targetNode: 'hp2',
       },
       'k8s-wkr-3': {
+        vmid: 205,
         cores: 16,
         memory: 1024 * 20, // 20gb
         network: [
@@ -110,6 +116,7 @@ export class K8sStack extends TerraformStack {
         password: process.env.PM_LXC_PASSWORD!,
         unprivileged: true,
         start: true,
+        onboot: true,
         hostname,
         ...config,
       });
