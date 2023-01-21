@@ -117,6 +117,7 @@ export class K8sStack extends TerraformStack {
         unprivileged: true,
         start: true,
         onboot: true,
+        sshPublicKeys: process.env.PM_LXC_PUBLIC_SSH_KEY!,
         hostname,
         ...config,
       });
