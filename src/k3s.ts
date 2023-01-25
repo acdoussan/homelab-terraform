@@ -3,7 +3,7 @@ import { TerraformStack } from "cdktf";
 import { Lxc } from "gen/providers/proxmox/lxc";
 import { ProxmoxProvider } from 'gen/providers/proxmox/provider';
 
-export class K8sStack extends TerraformStack {
+export class K3sStack extends TerraformStack {
   public readonly proxmoxProvider: ProxmoxProvider;
   public readonly nodes: Record<string, Lxc> = {};
 
@@ -17,7 +17,7 @@ export class K8sStack extends TerraformStack {
     });
 
     const nodes = {
-      'k8s-ctrl-1': {
+      'k3s-ctrl-1': {
         vmid: 200,
         cores: 2,
         memory: 2048,
@@ -31,7 +31,7 @@ export class K8sStack extends TerraformStack {
         ],
         targetNode: 'hp1',
       },
-      'k8s-ctrl-2': {
+      'k3s-ctrl-2': {
         vmid: 201,
         cores: 2,
         memory: 2048,
@@ -45,7 +45,7 @@ export class K8sStack extends TerraformStack {
         ],
         targetNode: 'hp2',
       },
-      'k8s-ctrl-3': {
+      'k3s-ctrl-3': {
         vmid: 202,
         cores: 2,
         memory: 2048,
@@ -59,7 +59,7 @@ export class K8sStack extends TerraformStack {
         ],
         targetNode: 'r720',
       },
-      'k8s-wkr-1': {
+      'k3s-wkr-1': {
         vmid: 203,
         cores: 2,
         memory: 4096,
@@ -73,7 +73,7 @@ export class K8sStack extends TerraformStack {
         ],
         targetNode: 'hp1',
       },
-      'k8s-wkr-2': {
+      'k3s-wkr-2': {
         vmid: 204,
         cores: 2,
         memory: 4096,
@@ -87,7 +87,7 @@ export class K8sStack extends TerraformStack {
         ],
         targetNode: 'hp2',
       },
-      'k8s-wkr-3': {
+      'k3s-wkr-3': {
         vmid: 205,
         cores: 16,
         memory: 1024 * 20, // 20gb
@@ -110,11 +110,11 @@ export class K8sStack extends TerraformStack {
           storage: 'local',
         },
         features: {
-          nesting: true,
+          nesting: false,
         },
         ostemplate: "truenas-nfs-hdd:vztmpl/ubuntu-22.10-standard_22.10-1_amd64.tar.zst",
         password: process.env.PM_LXC_PASSWORD!,
-        unprivileged: true,
+        unprivileged: false,
         start: true,
         onboot: true,
         sshPublicKeys: process.env.PM_LXC_PUBLIC_SSH_KEY!,

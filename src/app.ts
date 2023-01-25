@@ -1,12 +1,12 @@
 import { App, AppOptions } from "cdktf";
-import { K8sStack } from 'src/k8s';
+import { K3sStack } from 'src/k3s';
 
 export class HomelabApp extends App {
-  public readonly k8sStack: K8sStack;
+  public readonly k3sStack: K3sStack;
 
   constructor(options?: AppOptions) {
     super(options);
 
-    this.k8sStack = new K8sStack(this, "k8s");
+    this.k3sStack = new K3sStack(this, "k3s");
   }
 }
