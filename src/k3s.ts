@@ -1,10 +1,13 @@
+import * as path from 'path';
+
 import { Construct } from "constructs";
-import { TerraformStack } from "cdktf";
+import { TerraformStack, LocalBackend } from "cdktf";
 import { Lxc } from "gen/providers/proxmox/lxc";
 import { ProxmoxProvider } from 'gen/providers/proxmox/provider';
 
 export class K3sStack extends TerraformStack {
   public readonly proxmoxProvider: ProxmoxProvider;
+  public readonly localBackend: LocalBackend;
   public readonly nodes: Record<string, Lxc> = {};
 
   constructor(scope: Construct, id: string) {
@@ -14,6 +17,13 @@ export class K3sStack extends TerraformStack {
       pmApiUrl: process.env.PM_API_URL!,
       pmUser: process.env.PM_USER!,
       pmPassword: process.env.PM_PASSWORD!,
+    });
+
+    this.localBackend = new LocalBackend(this, {
+      path: path.resolve(
+        __dirname,
+        `../secrets/tfstate/terraform.${path.parse(__filename).name}.tfstate`,
+      ),
     });
 
     const nodes = {
