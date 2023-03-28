@@ -1,0 +1,14 @@
+{
+  "language": "typescript",
+  "app": "npx ts-node main.ts",
+  "projectId": "76832fca-6255-4f7b-8d69-977ad7d618d6",
+  "sendCrashReports": "false",
+  "terraformProviders": [
+    "Telmate/proxmox@~> 2.9"
+  ],
+  "terraformModules": [],
+  "context": {
+    "excludeStackIdFromLogicalIds": "true",
+    "allowSepCharsInLogicalIds": "true"
+  }
+}

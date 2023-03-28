@@ -1,6 +1,14 @@
 # terraform
 
+## Setting up secrets
+run `npm run transcrypt -- -c aes-256-cbc -p '<PASSWORD_HERE>'` to decrypt the secrets folder.
 
+## Initializing the project
+
+1) `npm install`
+2) `npm run cdktf get`
+
+Then either run `npm run cdktf deploy` or `npm run cdktf destroy`
 
 ## Getting started
 
