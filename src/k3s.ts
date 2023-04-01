@@ -123,6 +123,47 @@ export class K3sStack extends TerraformStack {
         },
         targetNode: 'r720',
       },
+      // nodes for a test cluster, will normally be off
+      'k3s-test-ctrl-1': {
+        vmid: 301,
+        cores: 2,
+        memory: 1024 * 2,
+        network: [
+          {
+            name: "eth0",
+            bridge: "vmbr0",
+            ip: "dhcp",
+            hwaddr: '8A:42:29:DB:13:4A',
+          },
+        ],
+        rootfs: {
+          size: '10G',
+          storage: 'local',
+        },
+        targetNode: 'r720',
+        start: false,
+        onboot: false,
+      },
+      'k3s-test-wkr-1': {
+        vmid: 302,
+        cores: 2,
+        memory: 1024 * 2,
+        network: [
+          {
+            name: "eth0",
+            bridge: "vmbr0",
+            ip: "dhcp",
+            hwaddr: '8E:BA:8A:F8:1E:F9',
+          },
+        ],
+        rootfs: {
+          size: '10G',
+          storage: 'local',
+        },
+        targetNode: 'r720',
+        start: false,
+        onboot: false,
+      },
     };
 
     for (const [hostname, config] of Object.entries(nodes)) {
